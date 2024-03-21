@@ -1,0 +1,91 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Sign Up</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="signupForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Username"
+            required
+          />
+          <mat-error
+            *ngIf="
+              signupForm.get('username')?.invalid &&
+              signupForm.get('username')?.touched
+            "
+          >
+            Please enter a valid Username!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              signupForm.get('password')?.touched
+            "
+          >
+            Please enter a valid Password!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="
+              signupForm.get('confirmPassword')?.invalid &&
+              signupForm.get('confirmPassword')?.touched
+            "
+          >
+            Please enter a valid confirm Password!
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="signupForm.invalid"
+          (click)="onSubmit()"
+        >
+          Sign Up
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
